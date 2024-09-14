@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生表</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+</head>
+<body>
+    <h2>学生表</h2>
+    <table  style="border:1px solid #dedede; border-collapse:collapse;">
+        <tr>
+            <td  colspan="5" style=" text-align: center;"><h4>学生表</h4></td>
+        </tr>
+        <tr>
+            <th style="border:1px solid #dedede; ">序号</th>
+            <th style="border:1px solid #dedede; ">用户名</th>
+            <th style="border:1px solid #dedede; ">年龄</th>
+            <th style="border:1px solid #dedede; ">性别</th>
+            <th style="border:1px solid #dedede; ">身份证号</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td style="border:1px solid #dedede; ">{{item.id}}</td>
+            <td style="border:1px solid #dedede; ">{{item.name}}</td>
+            <td style="border:1px solid #dedede; ">{{item.age}}</td>
+            <td style="border:1px solid #dedede; text-align: center;">{{item.get_sex_display}}</td>
+            <td style="border:1px solid #dedede; ">{{item.card_no}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

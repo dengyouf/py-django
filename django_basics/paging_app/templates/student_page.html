@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生表</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    <link rel="stylesheet" href="{% static 'css/page.css' %}">
+</head>
+<body>
+    <h2>学生表</h2>
+    <table  style="border:1px solid #dedede; border-collapse:collapse;">
+        <tr>
+            <td  colspan="6" style=" text-align: center;"><h4>学生表</h4></td>
+        </tr>
+        <tr>
+            <th style="border:1px solid #dedede; ">序号</th>
+            <th style="border:1px solid #dedede; ">ID</th>
+            <th style="border:1px solid #dedede; ">用户名</th>
+            <th style="border:1px solid #dedede; ">年龄</th>
+            <th style="border:1px solid #dedede; ">性别</th>
+            <th style="border:1px solid #dedede; ">身份证号</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td style="border:1px solid #dedede; ">{{ data.start_index | add:forloop.counter0 }}</td>
+            <td style="border:1px solid #dedede; ">{{item.id}}</td>
+            <td style="border:1px solid #dedede; ">{{item.name}}</td>
+            <td style="border:1px solid #dedede; ">{{item.age}}</td>
+            <td style="border:1px solid #dedede; text-align: center;">{{item.get_sex_display}}</td>
+            <td style="border:1px solid #dedede; ">{{item.card_no}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <nav>
+        <ul style="">
+            <li> <a href="?pnum=1"><span>首页</span></a></li>
+            <li> 
+                {% if   data.has_previous %}
+                <a href="?pnum={{ data.previous_page_number}}"><span>上一页</span></a>
+                {% else %}
+                <span>上一页</span>
+                {% endif %}
+            </li>
+            {% for i in page_range %}
+            {% if data.number == i %}
+            <li><a href="?pnum={{i}}"><span><strong>{{i}}</strong></span></a></li>
+            {% else %}
+            <li><a href="?pnum={{i}}"><span>{{i}}</span></a></li>
+            {% endif %}
+            {% endfor %}
+            <li> 
+                {% if   data.has_next %}
+                <a href="?pnum={{ data.next_page_number}}"><span>下一页</span></a>
+                {% else %}
+               <span>下一页</span>
+                {% endif %}
+            </li>
+            <li> <a href="?pnum={{ data.paginator.num_pages }}"><span>尾页</span></a></li>
+            <li>总共<span>{{ data.paginator.num_pages }}</span>页</span></li>
+            <li>当前<span>{{ data.number }}</span>页</span></li>
+        </ul>
+    </nav>
+</body>
+</html>

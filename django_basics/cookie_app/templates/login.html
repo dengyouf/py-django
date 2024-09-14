@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies技术</title>
+</head>
+<body>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <p>用户名： <input type="text" name="username" value="{{ username }}"></p>
+        <p>用户名： <input type="password" name="password" value="{{ password }}"></p>
+        <input type="checkbox" name="rember" value="rember" {% if username %}checked{%endif%}/>三天免登录
+        <p><input type="submit" name="登陆" id=""></p>
+    </form>
+</body>
+</html>

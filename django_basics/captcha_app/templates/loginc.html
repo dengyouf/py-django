@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证码</title>
+</head>
+<body>
+    <h3>验证码</h3>
+    <form action="{% url 'captcha_app:login' %}" method="POST">
+        {% csrf_token %}
+        <p>用户名：<input type="text" name="username"></p>
+        <p>密码：<input type="password" name="password"></p>
+        <p>验证码：<input type="text" placeholder="请输入验证码" name="check_code"> <img src="{% url 'captcha_app:gen_captcha_img' %}" onclick="changeCheckCode(this);" alt=""></p>
+        <p><input type="submit" value="登陆"></p>
+        <p>{% if msg %}{{msg}} {% endif %}</p>
+    </form>
+</body>
+<script>
+    function changeCheckCode(ths) {
+        ths.src = "{% url 'captcha_app:gen_captcha_img' %}?r=" + Math.random();
+    }
+</script>
+</html>

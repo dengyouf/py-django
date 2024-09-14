@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session技术</title>
+</head>
+<body>
+    <h2>Session技术</h2>
+    <form action="{% url 'session_app:login' %}" method="POST">
+        {% csrf_token %}
+        <p>用户名：<input type="text" name="username" value="{{ username }}"></p>
+        <p>密码：<input type="password" name="password" value="{{ password }}"></p>
+        <p><input type="submit" value="登陆"></p>
+        <p style="color: red;">{% if error_msg %} {{ error_msg }} {% endif %}</p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,6 @@
+ul,li{ padding:0; margin:0;list-style:none}
+.nav{border:1px solid #000; width:510px; overflow:hidden}
+.nav li{ line-height:22px; float:left; padding:0 5px;}
+.nav li a:hover{ color:#F00}
+nav li{line-height:22px; float:left; padding:0 6px;}
+nav li a{ color:#009900}

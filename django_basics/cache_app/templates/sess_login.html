@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆</title>
+</head>
+<body>
+    <h4>登陆</h4>
+    <form action="{% url 'cache_app:login' %}" method="POST">
+        {% csrf_token %}
+        <p>用户名： <input type="text" name="username" value="{{ username }}"></p>
+        <p>密码 <input type="password" name="password" value="{{ password }}"></p>
+        <p><input type="submit" value="登陆"></p>
+    </form>
+</body>
+</html>
